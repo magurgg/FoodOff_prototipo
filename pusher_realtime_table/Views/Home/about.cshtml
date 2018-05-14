@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Food off | Acerca de</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/Content/CSS/style.css" />
+    <link rel="stylesheet" href="~/Content/CSS/mycss.css" />
+    <style>
+        .bg-custom {
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
+            <a class="navbar-brand" href="@Url.Action("index", "Home",null)"><img src="~/Content/Logos/logo.png" style="height:40px;width:40px;margin:5px" />Food Off</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="@Url.Action("ordenar", "Home",null)">Ordenar<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("about", "Home",null)">¿Qué es Food Off?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("contact", "Home",null)">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="w3-container w3-padding-32 w3-center w3-white w3-xlarge" id="about">
+            <div class="w3-content">
+                <h1 class="w3-center w3-jumbo" style="margin-bottom:32px"><b>QUE ES FOOD OFF?</b></h1>
+                <p style="margin-bottom:32px">Food off es un servicio que te permite pedir comida hasta donde estés. Ya sea en un estadio, evento social, concierto, food truck o restaurante, se adapta a cualquier tipo de evento. Es rápido, cómodo y fácil de usar, además de que provee diversos métodos de pago. Solo accede al sitio y disfruta de este gran servicio.</p>
+                <img src="~/Content/Imagenes/iphonefd.png" style="width:250px;height:auto;margin-bottom:32px" class="img-responsive" />
+                <h1 style="margin-bottom:32px">Es muy sencillo pedir:</h1>
+                <p>1. Accede al sitio web y proximamente desde al aplicación</p>
+                <p>2. Selecciona tu restaurante favorito</p>
+                <p>3. Ordena tu comida</p>
+                <p>4. Recibes la comida en tu asiento</p>
+                <p>5. Disfruta!</p>
+            </div>
+        </div>
+        <footer class="footer w3-center bg-light">
+            <a href="@Url.Action("index", "Home",null)"><img src="~/Content/Logos/logo.png" class="img-responsive" style="width:80px; height: auto;margin:10px" /></a>
+        </footer>
+    </form>
+</body>
+</html>

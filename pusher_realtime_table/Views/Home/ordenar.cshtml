@@ -1,0 +1,93 @@
+﻿@model pusher_realtime_table.Models.RealtimeTable
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food off | Ordenar</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/Content/CSS/style.css" />
+    <link rel="stylesheet" href="~/Content/CSS/mycss.css" />
+    <style>
+        .bg-custom {
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
+            <a class="navbar-brand" href="@Url.Action("index", "Home",null)">
+                <img src="~/Content/Logos/logo.png" style="height: 40px; width: 40px; margin: 5px" />Food Off
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="@Url.Action("ordenar", "Home",null)">Ordenar<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("about", "Home",null)">¿Qué es Food Off?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("contact", "Home",null)">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container w3-container w3-padding-16 w3-center w3-white w3-xlarge">
+            <img src="http://placehold.it/400x300" class="img-responsive" style="width:200px; height: auto; margin: 10px" /><br /><br />
+        </div>
+    </form>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="container w3-container w3-center w3-white w3-xlarge">
+            <h4>Por favor rellena los siguientes campos</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label">Nombre:</label>
+                @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label class="control-label">Numero de mesa:</label>
+                @Html.EditorFor(model => model.year, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.year, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Describe tu orden:</label>
+                @Html.EditorFor(model => model.Desc_Orden, new { htmlAttributes = new { @style = "height:100px", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Desc_Orden, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Metodo de pago:</label>
+                <select class="form-control" id="formControlSelect">
+                    <option>Efectivo</option>
+                    <option>Tarjeta de débito</option>
+                    <option>Tarjeta de débito</option>
+                </select>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Confirmar orden" class="w3-button w3-light-grey w3-block" />
+            </div>
+            <br />
+        </div>
+    }
+    <footer class="w3-center bg-light">
+        <a href="@Url.Action("index", "Home",null)">
+            <img src="~/Content/Logos/logo.png" class="img-responsive" style="width: 80px; height: auto; margin: 10px" />
+        </a>
+    </footer>
+</body>
+</html>

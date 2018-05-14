@@ -1,0 +1,105 @@
+﻿
+
+@{
+    ViewBag.Title = "view";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.min.js"></script>
+<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+
+
+
+<h2>Real-Time Table</h2>
+
+
+<table class="table" id="app">
+    <tr>
+        <th>
+            ID Orden
+        </th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Nombre FT
+        </th>
+        <th>
+            Numero Mesa
+        </th>
+        <th>
+            Orden
+        </th>
+        <th>
+            Metodo Pago
+        </th>  
+    </tr>
+
+
+    <tr v-for="(mov, index) in sorted_movies">
+        <td>
+            {{index+1}}
+        </td>
+        <td>
+            {{mov.title}}
+        </td>
+        <td>
+            {{mov.Nombre_Foodtruck}}
+        </td>
+        <td>
+            {{mov.year}}
+        </td>
+        <td>
+            {{mov.Desc_Orden}}
+        </td>
+        <td>
+            {{mov.Metodo_Pago}}
+        </td>
+    </tr>
+
+
+</table>
+<script>
+    var pusher = new Pusher('62428177916ab25dc80b', {
+        cluster: 'mt1',
+        wsHost: 'ws.pusherapp.com',
+        httpHost: 'sockjs.pusher.com',
+        encrypted: true
+    });
+    var my_channel = pusher.subscribe('asp_channel');
+    var app = new Vue({
+        el: '#app',
+        data: {
+            movies: []
+        },
+        created: function () {
+            this.get_movies();
+            this.listen();
+        },
+        methods: {
+            get_movies: function () {
+                axios.get('@Url.Action("seen", "Home")')
+                  .then((response)=> {
+                      this.movies = response.data;
+                  });
+            },
+            listen: function () {
+                my_channel.bind("asp_event", (data) => {
+                    this.movies.push(data);
+                })
+            }
+        },
+        computed: {
+            sorted_movies: function () {
+                var movies = this.movies;
+
+                /*movies = movies.sort(function (a, b) {
+                    return parseInt(a.year) - parseInt(b.year);
+                });*/
+
+                return movies;
+            }
+        }
+    });
+</script>
